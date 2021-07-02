@@ -1,0 +1,9 @@
+body{
+   margin : 0px !important;
+   overflow-x: hidden; 
+}
+main {
+   min-height: 80vh;
+   width : 100%;
+   overflow-x: hidden; 
+}
