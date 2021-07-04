@@ -40,7 +40,7 @@ const products = [
   },
   {
     _id: '4',
-    name: 'Evonne 2 Piece Pine Solid Wood Floating Shelf',
+    name: 'Pine Solid Wood Floating Shelf',
     image: '/images/Product4.jpg',
     description:
       'Display your style with this set of true floating shelves. The shelves come with brackets that are invisible when installed. Each piece is its own creation with rustic character.',
@@ -53,7 +53,7 @@ const products = [
   },
   {
     _id: '5',
-    name: 'Honeywell Smart Home Security Motion Sensor',
+    name: 'Smart Home Security Motion Sensor',
     image: '/images/Product5.jpg',
     description:
       'The Smart Home Security Motion Sensor from Honeywell is an indoor motion sensor with a detection range up to 40. It utilizes the Honeywell Secure Wiselink Protocol.',
