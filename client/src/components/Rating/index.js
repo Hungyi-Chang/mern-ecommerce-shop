@@ -56,7 +56,7 @@ const Rating = ({ value, text }) => {
         value={{ color: '#f8e825', className: 'react-star' }}
       >
         {renderRating()}
-        <Span>{text && text}</Span>
+        <Span>{text && text} </Span>
       </IconContext.Provider>
     </div>
   );

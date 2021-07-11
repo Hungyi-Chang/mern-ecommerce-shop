@@ -1,6 +1,5 @@
 const products = [
   {
-    _id: '1',
     name: 'Daulton 20" Wide Velvet Side Chair',
     image: '/images/Product1.jpg',
     description:
@@ -13,7 +12,6 @@ const products = [
     numReviews: 12,
   },
   {
-    _id: '2',
     name: 'Harpenden 2 - Door Accent Cabinet',
     image: '/images/Product2.jpg',
     description:
@@ -26,7 +24,6 @@ const products = [
     numReviews: 8,
   },
   {
-    _id: '3',
     name: 'Cyra 2-Drawer Lateral Filing Cabinet',
     image: '/images/Product3.jpg',
     description:
@@ -39,7 +36,6 @@ const products = [
     numReviews: 12,
   },
   {
-    _id: '4',
     name: 'Pine Solid Wood Floating Shelf',
     image: '/images/Product4.jpg',
     description:
@@ -52,7 +48,6 @@ const products = [
     numReviews: 12,
   },
   {
-    _id: '5',
     name: 'Smart Home Security Motion Sensor',
     image: '/images/Product5.jpg',
     description:
@@ -65,7 +60,6 @@ const products = [
     numReviews: 10,
   },
   {
-    _id: '6',
     name: 'Decorative Storage Cube Bookcase',
     image: '/images/Product6.jpg',
     description:
