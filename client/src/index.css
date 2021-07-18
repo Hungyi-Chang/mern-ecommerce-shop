@@ -9,6 +9,37 @@ main {
    padding:0 10px;
 }
 
+h1{
+   font-size: 1.8rem;
+    padding: 1rem 0;
+}
+
+h2{
+   font-size: 1.4rem;
+   padding: 0.5rem 0;
+}
+
 .react-star {
   margin-top: -0.33rem;
+}
+
+.btn{
+width: 100%;
+}
+
+.btn:focus {
+    outline: none !important;
+    outline-offset: none !important;
+}
+
+
+.deleteButton {
+ color: #3E4B59;
+ margin: auto;
+ 
+}
+
+.deleteButton :hover {
+color: #FD9096;
+
 }

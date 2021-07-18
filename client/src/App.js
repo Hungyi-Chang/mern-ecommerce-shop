@@ -5,6 +5,7 @@ import ProductPage from './pages/ProductPage';
 import Navbar from './components/Navbar';
 import Sidebar from './components/Sidebar';
 import Footer from './components/Footer';
+import Cart from './pages/Cart';
 
 const App = () => {
   const [isOpen, setOpen] = useState(false);
@@ -20,6 +21,7 @@ const App = () => {
       <main className="py-3">
         <Route path="/" component={Home} exact />
         <Route path="/product/:id" component={ProductPage} />
+        <Route path="/cart/:id?" component={Cart} />
       </main>
       <Footer />
     </Router>

@@ -15,6 +15,18 @@ import {
 } from './NavbarElements';
 
 const Navbar = ({ toggle }) => {
+  /**
+   * TODO : highlight button link after the url path changes
+   */
+  // const [currentPath, setCurrentPath] = useState();
+
+  // const location = useLocation();
+
+  // useEffect(() => {
+  //   setCurrentPath(location);
+  //   console.log(location.pathname);
+  // }, [location]);
+
   return (
     <>
       <Nav>

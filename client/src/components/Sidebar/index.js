@@ -17,8 +17,8 @@ const Sidebar = ({ isOpen, toggle }) => {
       </Icon>
       <SidebarWrapper>
         <SidebarMenu>
-          <SidebarLink to="/">CART</SidebarLink>
-          <SidebarLink to="/">SIGN IN</SidebarLink>
+          <SidebarLink to="/cart">CART</SidebarLink>
+          <SidebarLink to="/login">SIGN IN</SidebarLink>
         </SidebarMenu>
       </SidebarWrapper>
     </SidebarContainer>
