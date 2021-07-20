@@ -61,9 +61,10 @@ export const MobileIcon = styled.div`
 
 export const NavMenu = styled.ul`
   display: flex;
-  ${'' /* align-items: center; */}
+
   list-style: none;
   text-align: center;
+  margin-top: 8px;
   margin-right: 5px;
 
   @media screen and (max-width: 768px) {
@@ -76,17 +77,17 @@ export const NavItem = styled.li`
 `;
 
 export const NavLink = styled(LinkR)`
-  color: #fff;
+  color: #ffff;
   display: flex;
   align-items: center;
   text-decoration: none;
   padding: 0 1rem;
   height: 100%;
   cursor: pointer;
-  margin-top: 5px;
+  ${'' /* margin-top: 5px; */}
 
   &:hover {
-    opacity: 0.8;
+    color: #d6f7f8;
   }
 `;
 

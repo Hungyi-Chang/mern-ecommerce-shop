@@ -1,7 +1,11 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { FaBars, FaShoppingCart } from 'react-icons/fa';
 import { BsFillPersonFill } from 'react-icons/bs';
 import PropTypes from 'prop-types';
+import { NavDropdown } from 'react-bootstrap';
+import { logout } from '../../actions/userActions';
 import {
   Nav,
   NavbarContainer,
@@ -27,6 +31,17 @@ const Navbar = ({ toggle }) => {
   //   console.log(location.pathname);
   // }, [location]);
 
+  const dispatch = useDispatch();
+
+  const userLogin = useSelector((state) => {
+    return state.userLogin;
+  });
+  const { userInfo } = userLogin;
+
+  const logoutHandler = () => {
+    dispatch(logout());
+  };
+
   return (
     <>
       <Nav>
@@ -46,14 +61,32 @@ const Navbar = ({ toggle }) => {
                 CART
               </NavLink>
             </NavItem>
-            <NavItem>
-              <NavLink to="/login">
-                <IconContainer>
-                  <BsFillPersonFill />
-                </IconContainer>
-                SIGN IN
-              </NavLink>
-            </NavItem>
+
+            {userInfo ? (
+              <NavDropdown
+                title={<span className="text-white">{userInfo.name}</span>}
+                id="username"
+                className="my-auto"
+              >
+                <NavDropdown.Item className="menuItem">
+                  <Link className="link" to="/profile">
+                    Profile
+                  </Link>
+                </NavDropdown.Item>
+                <NavDropdown.Item className="menuItem" onClick={logoutHandler}>
+                  Logout
+                </NavDropdown.Item>
+              </NavDropdown>
+            ) : (
+              <NavItem>
+                <NavLink to="/login">
+                  <IconContainer>
+                    <BsFillPersonFill />
+                  </IconContainer>
+                  SIGN IN
+                </NavLink>
+              </NavItem>
+            )}
           </NavMenu>
         </NavbarContainer>
       </Nav>

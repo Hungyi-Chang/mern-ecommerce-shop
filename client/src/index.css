@@ -23,13 +23,32 @@ h2{
   margin-top: -0.33rem;
 }
 
-.btn{
+.button{
 width: 100%;
 }
 
-.btn:focus {
+.button:focus {
     outline: none !important;
     outline-offset: none !important;
+}
+
+#username::after{
+      color: white;
+   }
+
+#username :hover {
+color: #D6F7F8 !important;
+
+}
+
+.menuItem {
+   color:  #3E4B59 !important;
+  text-align: center !important;
+  padding: 5px !important;
+}
+
+.link {
+text-decoration: none !important;
 }
 
 
