@@ -37,7 +37,7 @@ const Login = ({ location, history }) => {
     function handleClickOutside(event) {
       if (divElement && !divElement.contains(event.target)) {
         setShowAlert(false);
-        dispatch(cleanError());
+        dispatch(cleanError('login'));
       }
     }
 
@@ -50,6 +50,8 @@ const Login = ({ location, history }) => {
 
   const submitHandler = (e) => {
     e.preventDefault();
+
+    setShowAlert(false);
     dispatch(login(email, password));
   };
   return (

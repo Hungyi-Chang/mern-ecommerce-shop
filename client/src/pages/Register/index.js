@@ -40,7 +40,7 @@ const Register = ({ location, history }) => {
     function handleClickOutside(event) {
       if (divElement && !divElement.contains(event.target)) {
         setShowAlert(false);
-        dispatch(cleanError());
+        dispatch(cleanError('register'));
       }
     }
 
@@ -53,9 +53,9 @@ const Register = ({ location, history }) => {
 
   const submitHandler = (e) => {
     e.preventDefault();
+    setShowAlert(false);
     if (password !== confirmPassword) {
-      setShowAlert(false);
-      dispatch(cleanError());
+      dispatch(cleanError(register));
       setMessage('Passwords do not match');
     } else {
       dispatch(register(name, email, password));

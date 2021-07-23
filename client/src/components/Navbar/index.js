@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { LinkContainer } from 'react-router-bootstrap';
 import { FaBars, FaShoppingCart } from 'react-icons/fa';
 import { BsFillPersonFill } from 'react-icons/bs';
 import PropTypes from 'prop-types';
@@ -68,11 +68,12 @@ const Navbar = ({ toggle }) => {
                 id="username"
                 className="my-auto"
               >
-                <NavDropdown.Item className="menuItem">
-                  <Link className="link" to="/profile">
+                <LinkContainer to="/profile">
+                  <NavDropdown.Item className="menuItem">
                     Profile
-                  </Link>
-                </NavDropdown.Item>
+                  </NavDropdown.Item>
+                </LinkContainer>
+
                 <NavDropdown.Item className="menuItem" onClick={logoutHandler}>
                   Logout
                 </NavDropdown.Item>
