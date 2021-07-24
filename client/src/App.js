@@ -9,6 +9,9 @@ import Cart from './pages/Cart';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Profile from './pages/Profile';
+import Shipping from './pages/Shipping';
+import Payment from './pages/Payment';
+import PlaceOrder from './pages/PlaceOrder';
 
 const App = () => {
   const [isOpen, setOpen] = useState(false);
@@ -25,6 +28,9 @@ const App = () => {
         <Route path="/login" component={Login} />
         <Route path="/register" component={Register} />
         <Route path="/profile" component={Profile} />
+        <Route path="/shipping" component={Shipping} />
+        <Route path="/payment" component={Payment} />
+        <Route path="/placeorder" component={PlaceOrder} />
         <Route path="/" component={Home} exact />
         <Route path="/product/:id" component={ProductPage} />
         <Route path="/cart/:id?" component={Cart} />
