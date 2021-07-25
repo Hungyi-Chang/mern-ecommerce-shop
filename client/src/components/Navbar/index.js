@@ -1,5 +1,7 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { LinkContainer } from 'react-router-bootstrap';
 import { FaBars, FaShoppingCart } from 'react-icons/fa';
 import { BsFillPersonFill } from 'react-icons/bs';
@@ -31,6 +33,8 @@ const Navbar = ({ toggle }) => {
   //   console.log(location.pathname);
   // }, [location]);
 
+  const history = useHistory();
+
   const dispatch = useDispatch();
 
   const userLogin = useSelector((state) => {
@@ -40,6 +44,7 @@ const Navbar = ({ toggle }) => {
 
   const logoutHandler = () => {
     dispatch(logout());
+    history.push('/');
   };
 
   return (

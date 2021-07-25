@@ -1,8 +1,9 @@
 import styled from 'styled-components';
 
-export const Title = styled.div`
+export const Title = styled.a`
   color: #ffff;
   text-align: center;
+  text-decoration: none;
   width: 80px;
   padding: 2px;
   display: inline-block;
