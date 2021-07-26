@@ -1,14 +1,6 @@
 /* eslint-disable react/prop-types */
-import React, { useState, useEffect } from 'react';
-import {
-  Button,
-  Row,
-  Col,
-  ListGroup,
-  Image,
-  Card,
-  Badge,
-} from 'react-bootstrap';
+import React, { useEffect } from 'react';
+import { Button, Row, Col, ListGroup, Image } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Title } from './PlaceOrderElements';
