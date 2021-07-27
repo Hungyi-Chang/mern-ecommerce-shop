@@ -1,15 +1,19 @@
+/* eslint-disable no-nested-ternary */
 /* eslint-disable react/prop-types */
 import React, { useState, useEffect, useRef } from 'react';
-import { Form, Button, Row, Col } from 'react-bootstrap';
+import { Form, Button, Row, Col, Table } from 'react-bootstrap';
+import { LinkContainer } from 'react-router-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
+import { ImCross } from 'react-icons/im';
+import { IconContext } from 'react-icons';
 import Message from '../../components/Message';
 import Loader from '../../components/Loader';
+import { getUserDetails, updateUserProfile } from '../../actions/userActions';
+import { listMyOrders } from '../../actions/orderActions';
 import {
-  getUserDetails,
-  cleanError,
-  updateUserProfile,
-} from '../../actions/userActions';
-import { USER_UPDATE_RESET } from '../../constants/userConstants';
+  USER_UPDATE_RESET,
+  USER_DETAILS_RESET,
+} from '../../constants/userConstants';
 
 const Profile = ({ history }) => {
   const [name, setName] = useState('');
@@ -34,11 +38,17 @@ const Profile = ({ history }) => {
     return state.userUpdateProfile;
   });
 
+  const orderMyList = useSelector((state) => {
+    return state.orderMyList;
+  });
+
   const { success } = userUpdateProfile;
 
   const { userInfo } = userLogin;
 
   const { loading, error, user } = userDetails;
+
+  const { loading: loadingOrders, error: errorOrders, orders } = orderMyList;
 
   useEffect(() => {
     if (!userInfo) {
@@ -46,13 +56,11 @@ const Profile = ({ history }) => {
     } else if (!user || !user.name || success) {
       dispatch({ type: USER_UPDATE_RESET });
       dispatch(getUserDetails('profile'));
+      dispatch(listMyOrders());
     } else {
       setName(user.name);
       setEmail(user.email);
     }
-    // return () => {
-    //   window.alert('unmount');
-    // };
   }, [history, userInfo, dispatch, user, success]);
 
   useEffect(() => {
@@ -61,13 +69,14 @@ const Profile = ({ history }) => {
     function handleClickOutside(event) {
       if (divElement && !divElement.contains(event.target)) {
         setShowAlert(false);
-        dispatch(cleanError('profile'));
       }
     }
 
     document.addEventListener('mousedown', handleClickOutside);
     return () => {
+      dispatch({ type: USER_DETAILS_RESET });
       // Unbind the event listener on clean up
+      console.log('run');
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, [elementRef, dispatch]);
@@ -151,6 +160,68 @@ const Profile = ({ history }) => {
       </Col>
       <Col md={9}>
         <h2>My Orders</h2>
+        {loadingOrders ? (
+          <Loader />
+        ) : errorOrders ? (
+          <Message variant="danger">{errorOrders}</Message>
+        ) : (
+          <Table striped bordered hover responsive className="table-sm">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>DATE</th>
+                <th>TOTAL</th>
+                <th>PAID</th>
+                <th>DELIVERED</th>
+                <th> </th>
+              </tr>
+            </thead>
+            <tbody>
+              {orders.map((order) => {
+                return (
+                  <tr key={order._id}>
+                    <td>{order._id}</td>
+                    <td>{order.createdAt.substring(0, 10)}</td>
+                    <td>{order.totalPrice}</td>
+                    <td>
+                      {order.isPaid ? (
+                        order.paidAt.substring(0, 10)
+                      ) : (
+                        <IconContext.Provider
+                          value={{
+                            size: '1em',
+                            color: '#FD9096',
+                          }}
+                        >
+                          <ImCross />
+                        </IconContext.Provider>
+                      )}
+                    </td>
+                    <td>
+                      {order.isDelivered ? (
+                        order.deliveredAt.substring(0, 10)
+                      ) : (
+                        <IconContext.Provider
+                          value={{
+                            size: '1em',
+                            color: '#FD9096',
+                          }}
+                        >
+                          <ImCross />
+                        </IconContext.Provider>
+                      )}
+                    </td>
+                    <td>
+                      <LinkContainer to={`/order/${order._id}`}>
+                        <Button className="btn-sm">Details</Button>
+                      </LinkContainer>
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </Table>
+        )}
       </Col>
     </Row>
   );

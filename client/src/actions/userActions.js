@@ -4,7 +4,6 @@ import {
   USER_LOGIN_REQUEST,
   USER_LOGIN_SUCCESS,
   USER_ERROR_CLEAR,
-  DETAIL_ERROR_CLEAR,
   REGISTER_ERROR_CLEAR,
   USER_REGISTER_REQUEST,
   USER_REGISTER_SUCCESS,
@@ -60,11 +59,6 @@ export const cleanError = (page) => {
       case 'register':
         return dispatch({
           type: REGISTER_ERROR_CLEAR,
-          payload: null,
-        });
-      case 'profile':
-        return dispatch({
-          type: DETAIL_ERROR_CLEAR,
           payload: null,
         });
       default:

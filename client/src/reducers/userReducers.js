@@ -4,7 +4,6 @@ import {
   USER_LOGIN_FAIL,
   USER_ERROR_CLEAR,
   REGISTER_ERROR_CLEAR,
-  DETAIL_ERROR_CLEAR,
   USER_REGISTER_REQUEST,
   USER_REGISTER_SUCCESS,
   USER_REGISTER_FAIL,
@@ -16,6 +15,7 @@ import {
   USER_UPDATE_SUCCESS,
   USER_UPDATE_FAIL,
   USER_UPDATE_RESET,
+  USER_DETAILS_RESET,
 } from '../constants/userConstants.js';
 
 export const userLoginReducer = (state = {}, action) => {
@@ -58,8 +58,8 @@ export const userDetailsReducer = (state = { user: {} }, action) => {
       return { loading: false, user: action.payload };
     case USER_DETAILS_FAIL:
       return { loading: false, error: action.payload };
-    case DETAIL_ERROR_CLEAR:
-      return { ...state, loading: false, error: action.payload };
+    case USER_DETAILS_RESET:
+      return { user: {}, loading: false, error: action.payload };
     default:
       return state;
   }
