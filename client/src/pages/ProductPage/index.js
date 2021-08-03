@@ -16,6 +16,7 @@ import Rating from '../../components/Rating';
 import Loader from '../../components/Loader';
 import Message from '../../components/Message';
 import { listProductDetails } from '../../actions/productActions';
+import { PRODUCT_DETAILS_RESET } from '../../constants/productConstants';
 
 // eslint-disable-next-line react/prop-types
 const ProductPage = ({ match, history }) => {
@@ -31,6 +32,10 @@ const ProductPage = ({ match, history }) => {
 
   useEffect(() => {
     dispatch(listProductDetails(match.params.id));
+
+    return () => {
+      dispatch({ type: PRODUCT_DETAILS_RESET });
+    };
   }, [dispatch, match]);
 
   const addToCartHandler = () => {
@@ -50,7 +55,16 @@ const ProductPage = ({ match, history }) => {
       ) : (
         <Row>
           <Col md={5}>
-            <Image src={product.image} alt={product.name} fluid />
+            <Image
+              src={
+                product.image
+                  ? product.image.split('.')[1]
+                    ? product.image
+                    : `/api/photoupload/${product._id}`
+                  : null
+              }
+              fluid
+            />
           </Col>
           <Col md={4}>
             <ListGroup variant="flush">

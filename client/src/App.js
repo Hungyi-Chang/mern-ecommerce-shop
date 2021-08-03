@@ -13,6 +13,10 @@ import Shipping from './pages/Shipping';
 import Payment from './pages/Payment';
 import PlaceOrder from './pages/PlaceOrder';
 import Order from './pages/Order';
+import UserList from './pages/UserList';
+import UserEdit from './pages/UserEdit';
+import ProductList from './pages/ProductList';
+import ProductEdit from './pages/ProductEdit';
 
 const App = () => {
   const [isOpen, setOpen] = useState(false);
@@ -27,6 +31,9 @@ const App = () => {
       <Sidebar isOpen={isOpen} toggle={toggle} />
       <main className="py-3">
         <Route path="/login" component={Login} />
+        <Route path="/admin/userlist" component={UserList} />
+        <Route path="/admin/productlist" component={ProductList} />
+        <Route path="/admin/user/:id/edit" component={UserEdit} />
         <Route path="/register" component={Register} />
         <Route path="/profile" component={Profile} />
         <Route path="/shipping" component={Shipping} />
@@ -35,6 +42,7 @@ const App = () => {
         <Route path="/order/:id" component={Order} />
         <Route path="/" component={Home} exact />
         <Route path="/product/:id" component={ProductPage} />
+        <Route path="/admin/product/:id/edit" component={ProductEdit} />
         <Route path="/cart/:id?" component={Cart} />
       </main>
       <Footer />

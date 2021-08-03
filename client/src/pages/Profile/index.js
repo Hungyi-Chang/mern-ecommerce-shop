@@ -53,7 +53,7 @@ const Profile = ({ history }) => {
   useEffect(() => {
     if (!userInfo) {
       history.push('/login');
-    } else if (!user || !user.name || success) {
+    } else if (!user || !user.name || success || user.name !== userInfo.name) {
       dispatch({ type: USER_UPDATE_RESET });
       dispatch(getUserDetails('profile'));
       dispatch(listMyOrders());

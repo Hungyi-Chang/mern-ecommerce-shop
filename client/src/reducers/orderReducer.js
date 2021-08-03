@@ -13,6 +13,9 @@ import {
   ORDER_LIST_REQUEST,
   ORDER_LIST_SUCCESS,
   ORDER_LIST_FAIL,
+  ORDER_TABLE_REQUEST,
+  ORDER_TABLE_SUCCESS,
+  ORDER_TABLE_FAIL,
 } from '../constants/orderConstants';
 
 export const orderCreateReducer = (state = {}, action) => {
@@ -110,6 +113,30 @@ export const orderListReducer = (state = { orders: [] }, action) => {
       };
     }
     case ORDER_LIST_FAIL: {
+      return {
+        loading: false,
+        error: action.payload,
+      };
+    }
+    default:
+      return state;
+  }
+};
+
+export const orderTableReducer = (state = { orders: [] }, action) => {
+  switch (action.type) {
+    case ORDER_TABLE_REQUEST: {
+      return {
+        loading: true,
+      };
+    }
+    case ORDER_TABLE_SUCCESS: {
+      return {
+        loading: false,
+        orders: action.payload,
+      };
+    }
+    case ORDER_TABLE_FAIL: {
       return {
         loading: false,
         error: action.payload,

@@ -46,6 +46,7 @@ const Register = ({ location, history }) => {
 
     document.addEventListener('mousedown', handleClickOutside);
     return () => {
+      dispatch(cleanError('register'));
       // Unbind the event listener on clean up
       document.removeEventListener('mousedown', handleClickOutside);
     };
@@ -105,7 +106,7 @@ const Register = ({ location, history }) => {
           <Form.Group controlId="confirmPassword" className="pb-3">
             <Form.Label>Confirm password</Form.Label>
             <Form.Control
-              type="confirmPassword"
+              type="password"
               placeholder="Confirm password"
               value={confirmPassword}
               onChange={(e) => {

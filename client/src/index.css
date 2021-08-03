@@ -19,10 +19,7 @@ main {
 
 
 }
-h1{
-   font-size: 1rem !important;
-    padding: 1rem 0;
-}
+
 
 
   }
@@ -55,11 +52,14 @@ span {
    padding: 1;
    color: white;
 }
-
+ 
 .react-star {
   margin-top: -0.33rem;
 }
 
+.addIcon {
+  margin-top: -0.23rem;
+}
 .button{
 width: 100%;
 }
@@ -77,6 +77,17 @@ width: 100%;
 color: #D6F7F8 !important;
 
 }
+
+#adminmenu::after{
+   color: white;
+}
+
+#adminmenu :hover {
+color: #D6F7F8 !important;
+
+}
+
+
 
 .menuItem {
    color:  #3E4B59 !important;

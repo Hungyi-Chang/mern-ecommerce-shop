@@ -1,15 +1,46 @@
-import React from 'react';
+/* eslint-disable jsx-a11y/alt-text */
+/* eslint-disable no-nested-ternary */
+import React, { useState } from 'react';
+import LazyLoad from 'react-lazyload';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { Card } from 'react-bootstrap';
+import { Card, Figure } from 'react-bootstrap';
+import { StateProvider } from 'reenhance-components';
 import Rating from '../Rating';
 
+const LoadedState = StateProvider(false);
 const Product = ({ product }) => {
   return (
     <>
       <Card className="my-3 p-3 rounded">
         <Link to={`/product/${product._id}`}>
-          <Card.Img src={product.image} variant="top" />
+          <LazyLoad height={100} offset={[200, 0]}>
+            <LoadedState>
+              {({ state: loaded, setState: setLoaded }) => {
+                return (
+                  <>
+                    {!loaded ? (
+                      <Card.Img src="/images/loadingPlaceholder.png" />
+                    ) : null}
+                    <Card.Img
+                      variant="top"
+                      src={
+                        product.image
+                          ? product.image.split('.')[1]
+                            ? product.image
+                            : `api/photoupload/${product._id}`
+                          : null
+                      }
+                      style={!loaded ? { visibility: 'hidden' } : {}}
+                      onLoad={() => {
+                        return setLoaded(true);
+                      }}
+                    />
+                  </>
+                );
+              }}
+            </LoadedState>
+          </LazyLoad>
         </Link>
         <Card.Body>
           <Link to={`/product/${product._id}`}>

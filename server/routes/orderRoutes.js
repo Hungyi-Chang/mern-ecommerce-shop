@@ -4,8 +4,9 @@ import {
   getOrderById,
   updateOrderToPaid,
   getMyOrders,
+  getOrders,
 } from '../controller/orderController.js';
-import { protect } from '../middleware/authMiddleware.js';
+import { protect, admin } from '../middleware/authMiddleware.js';
 
 const router = express.Router();
 
@@ -15,7 +16,7 @@ const router = express.Router();
  **access Private
  ********************************************************** */
 
-router.route('/').post(protect, addOrderItems);
+router.route('/').post(protect, addOrderItems).get(protect, admin, getOrders);
 
 router.route('/myorders').get(protect, getMyOrders);
 

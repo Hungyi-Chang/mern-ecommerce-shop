@@ -93,6 +93,30 @@ const Navbar = ({ toggle }) => {
                 </NavLink>
               </NavItem>
             )}
+            {userInfo && userInfo.isAdmin && (
+              <NavDropdown
+                title={<span className="text-white">Admin</span>}
+                id="adminmenu"
+                className="my-auto"
+              >
+                <LinkContainer to="/admin/userlist">
+                  <NavDropdown.Item className="menuItem">
+                    Users
+                  </NavDropdown.Item>
+                </LinkContainer>
+
+                <LinkContainer to="/admin/productlist">
+                  <NavDropdown.Item className="menuItem">
+                    Products
+                  </NavDropdown.Item>
+                </LinkContainer>
+                <LinkContainer to="/admin/orderlist">
+                  <NavDropdown.Item className="menuItem">
+                    Orders
+                  </NavDropdown.Item>
+                </LinkContainer>
+              </NavDropdown>
+            )}
           </NavMenu>
         </NavbarContainer>
       </Nav>
