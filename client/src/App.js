@@ -17,13 +17,13 @@ import UserList from './pages/UserList';
 import UserEdit from './pages/UserEdit';
 import ProductList from './pages/ProductList';
 import ProductEdit from './pages/ProductEdit';
+import OrderList from './pages/OrderList';
 
 const App = () => {
   const [isOpen, setOpen] = useState(false);
 
   const toggle = () => {
     setOpen(!isOpen);
-    console.log(isOpen);
   };
   return (
     <Router>
@@ -37,10 +37,18 @@ const App = () => {
         <Route path="/register" component={Register} />
         <Route path="/profile" component={Profile} />
         <Route path="/shipping" component={Shipping} />
+        <Route path="/admin/orderlist" component={OrderList} />
         <Route path="/payment" component={Payment} />
         <Route path="/placeorder" component={PlaceOrder} />
         <Route path="/order/:id" component={Order} />
         <Route path="/" component={Home} exact />
+        <Route path="/search/:keyword" component={Home} />
+        <Route path="/page/:pageNumber" component={Home} />
+        <Route
+          path="/search/:keyword/page/:pageNumber"
+          component={Home}
+          exact
+        />
         <Route path="/product/:id" component={ProductPage} />
         <Route path="/admin/product/:id/edit" component={ProductEdit} />
         <Route path="/cart/:id?" component={Cart} />

@@ -4,10 +4,8 @@ import multer from 'multer';
 import s3Storage from 'multer-sharp-s3';
 import dotenv from 'dotenv';
 import S3 from 'aws-sdk/clients/s3.js';
-import aws from 'aws-sdk';
 import asyncHandler from 'express-async-handler';
 import { getFileStream } from '../s3.js';
-import { protect } from '../middleware/authMiddleware.js';
 import Product from '../models/productModel.js';
 
 const router = express.Router();
@@ -52,7 +50,6 @@ router
         res.status(409);
         throw new Error('Uploading failed');
       }
-      console.log(file.Key);
 
       console.log(req.file); // Print upload details
       res.send('Successfully uploaded!');

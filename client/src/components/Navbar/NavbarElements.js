@@ -24,7 +24,7 @@ export const NavbarContainer = styled.div`
   z-index: 1;
   width: 100%;
   padding: 0 24px;
-  max-width: 1100px;
+  max-width: 1300px;
   align-items: center;
 `;
 
@@ -32,7 +32,7 @@ export const NavLogo = styled(LinkR)`
   color: #fff;
   justify-self: flex-start;
   cursor: pointer;
-  margin-left: 24px;
+  margin-left: 14px;
 `;
 
 export const Logo = styled.img`

@@ -48,13 +48,16 @@ export const SidebarWrapper = styled.div`
 export const SidebarMenu = styled.div`
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: repeat(2, 80px);
+  grid-template-rows: ${({ rows }) => {
+    return `repeat(${rows}, 80px)`;
+  }};
   text-align: center;
   justify-items: center;
   align-items: center;
   @media screen and (max-width: 480px) {
-    grid-template-rows: repeat(2, 60px);
-  }
+    grid-template-rows: ${({ rows }) => {
+      return `repeat(${rows}, 80px)`;
+    }};
 `;
 
 export const SidebarLink = styled(LinkR)`

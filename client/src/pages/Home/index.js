@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable no-nested-ternary */
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -6,9 +7,15 @@ import Product from '../../components/Product';
 import Loader from '../../components/Loader';
 import Message from '../../components/Message';
 import { listProducts } from '../../actions/productActions';
+import SearchBox from '../../components/SearchBox';
+import { PRODUCT_LIST_RESET } from '../../constants/productConstants';
 
-const Home = () => {
+const Home = ({ match }) => {
   const dispatch = useDispatch();
+
+  const { keyword } = match.params;
+
+  const pageNumber = match.params.pageNumber || 1;
 
   const productList = useSelector((state) => {
     return state.productList;
@@ -16,12 +23,22 @@ const Home = () => {
 
   const { loading, error, products } = productList;
   useEffect(() => {
-    dispatch(listProducts());
-  }, [dispatch]);
+    dispatch(listProducts(keyword, pageNumber));
+
+    return () => {
+      dispatch({ type: PRODUCT_LIST_RESET });
+    };
+  }, [dispatch, keyword, pageNumber]);
 
   return (
     <>
-      <h1>Latest Product</h1>
+      <Row>
+        <Col>
+          <h1>Latest Product</h1>
+          <SearchBox />
+        </Col>
+      </Row>
+
       {loading ? (
         <Loader />
       ) : error ? (

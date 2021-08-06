@@ -31,14 +31,22 @@ const Sidebar = ({ isOpen, toggle }) => {
       </Icon>
       <SidebarWrapper>
         {userInfo ? (
-          <SidebarMenu>
+          <SidebarMenu rows={userInfo.isAdmin ? 6 : 3}>
             <SidebarLink to="/cart">CART</SidebarLink>
+            <SidebarLink to="/profile">PROFILE</SidebarLink>
+            {userInfo.isAdmin ? (
+              <>
+                <SidebarLink to="/admin/userlist">USER</SidebarLink>
+                <SidebarLink to="/admin/productlist">PRODUCT</SidebarLink>
+                <SidebarLink to="/admin/orderlist">ORDER</SidebarLink>
+              </>
+            ) : null}
             <SidebarLink to="/" onClick={logoutHandler}>
               LOGOUT
             </SidebarLink>
           </SidebarMenu>
         ) : (
-          <SidebarMenu>
+          <SidebarMenu rows={2}>
             <SidebarLink to="/cart">CART</SidebarLink>
             <SidebarLink to="/login">SIGN IN</SidebarLink>
           </SidebarMenu>

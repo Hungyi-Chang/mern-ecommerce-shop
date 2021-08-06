@@ -1,10 +1,10 @@
 /* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable no-nested-ternary */
-import React, { useState } from 'react';
+import React from 'react';
 import LazyLoad from 'react-lazyload';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { Card, Figure } from 'react-bootstrap';
+import { Card } from 'react-bootstrap';
 import { StateProvider } from 'reenhance-components';
 import Rating from '../Rating';
 
@@ -14,7 +14,7 @@ const Product = ({ product }) => {
     <>
       <Card className="my-3 p-3 rounded">
         <Link to={`/product/${product._id}`}>
-          <LazyLoad height={100} offset={[200, 0]}>
+          <LazyLoad height={100} offset={[1000, 0]}>
             <LoadedState>
               {({ state: loaded, setState: setLoaded }) => {
                 return (
@@ -28,7 +28,7 @@ const Product = ({ product }) => {
                         product.image
                           ? product.image.split('.')[1]
                             ? product.image
-                            : `api/photoupload/${product._id}`
+                            : `/api/photoupload/${product._id}`
                           : null
                       }
                       style={!loaded ? { visibility: 'hidden' } : {}}
