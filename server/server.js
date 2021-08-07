@@ -1,6 +1,7 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import colors from 'colors';
+import path from 'path';
 import morgan from 'morgan';
 import { notFound, errorHandler } from './middleware/errorMiddleware.js';
 import connectDB from './config/db.js';
@@ -21,10 +22,6 @@ if (process.env.NODE_ENV === 'development') {
 
 app.use(express.json()); // * allow server receive JSON body
 
-app.get('/', (req, res) => {
-  res.send('API is running.....');
-});
-
 app.use('/api/photoupload', uploadRoutes);
 
 app.use('/api/products', productRoutes);
@@ -36,6 +33,21 @@ app.use('/api/orders', orderRoutes);
 app.get('/api/config/paypal', (req, res) => {
   return res.send(process.env.PAYPAL_CLIENT_ID);
 });
+
+const __dirname = path.resolve();
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, '/client/build')));
+
+  app.get('*', (req, res) => {
+    return res.sendFile(
+      path.resolve(__dirname, 'client', 'build', 'index.html')
+    );
+  });
+} else {
+  app.get('/', (req, res) => {
+    res.send('API is running.....');
+  });
+}
 
 app.use(notFound);
 
