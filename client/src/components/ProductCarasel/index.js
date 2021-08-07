@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Carousel, Image } from 'react-bootstrap';
-import { BrowserView, MobileView, isMobile } from 'react-device-detect';
+import { isMobile } from 'react-device-detect';
 import Message from '../Message';
 import Loader from '../Loader';
 import { listTopProducts } from '../../actions/productActions';
