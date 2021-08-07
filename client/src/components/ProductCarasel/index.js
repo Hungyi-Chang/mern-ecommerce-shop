@@ -22,7 +22,7 @@ const ProductCarousel = () => {
       height: '300px',
       display: 'block',
       margin: '50px auto',
-      padding: '35px',
+      padding: '25px',
       borderRadius: '50%',
     },
     mobileImage: {
