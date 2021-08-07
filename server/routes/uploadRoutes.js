@@ -26,7 +26,7 @@ const s3 = new S3({
 const storage = s3Storage({
   s3,
   Bucket: bucketName,
-  ACL: 'private',
+  ACL: 'public-read',
   resize: {
     width: 640,
     height: 510,
@@ -42,7 +42,7 @@ router
       const product = await Product.findById(req.params.id);
       const { file } = req;
       if (file && product) {
-        product.image = file.Key;
+        product.image = `https://mern-dream-shop.s3.ap-southeast-2.amazonaws.com/${file.Key}`;
         const updatedProduct = await product.save();
         res.status(201).json(updatedProduct);
         // res.send(`received!, result: ${product}`);
@@ -52,7 +52,6 @@ router
       }
 
       console.log(req.file); // Print upload details
-      res.send('Successfully uploaded!');
     })
   )
   .get(

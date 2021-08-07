@@ -16,15 +16,18 @@ import {
   createProduct,
 } from '../../actions/productActions';
 import { PRODUCT_CREATE_RESET } from '../../constants/productConstants';
+import Paginate from '../../components/Paginate';
 
-const ProductList = ({ history }) => {
+const ProductList = ({ history, match }) => {
+  const pageNumber = match.params.pageNumber || 1;
+
   const dispatch = useDispatch();
 
   const productList = useSelector((state) => {
     return state.productList;
   });
 
-  const { loading, error, products } = productList;
+  const { loading, error, products, page, pages } = productList;
 
   const productDelete = useSelector((state) => {
     return state.productDelete;
@@ -60,7 +63,7 @@ const ProductList = ({ history }) => {
     } else if (successCreate) {
       history.push(`/admin/product/${createdProduct._id}/edit`);
     } else {
-      dispatch(listProducts());
+      dispatch(listProducts('', pageNumber));
     }
   }, [
     dispatch,
@@ -69,6 +72,7 @@ const ProductList = ({ history }) => {
     successDelete,
     successCreate,
     createdProduct,
+    pageNumber,
   ]);
 
   const deleteHandler = (id) => {
@@ -87,7 +91,7 @@ const ProductList = ({ history }) => {
         <Col>
           <h1>Products</h1>
         </Col>
-        <Col className="text-end">
+        <Col className="text-end mb-3 mb-sm-0">
           <Button onClick={createProductHandler}>
             <IconContext.Provider
               value={{
@@ -98,7 +102,7 @@ const ProductList = ({ history }) => {
             >
               <MdAdd />
             </IconContext.Provider>
-            Create Product
+            Create
           </Button>
         </Col>
       </Row>
@@ -111,61 +115,64 @@ const ProductList = ({ history }) => {
       ) : error ? (
         <Message variant="danger">{error}</Message>
       ) : (
-        <Table striped bordered hover responsive className="table-sm">
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>NAME</th>
-              <th>PRICE</th>
-              <th>CATEGORY</th>
-              <th>BRAND</th>
-              <th> </th>
-            </tr>
-          </thead>
-          <tbody>
-            {products.map((product) => {
-              return (
-                <tr key={product._id}>
-                  <td>{product._id}</td>
-                  <td>{product.name}</td>
-                  <td>${product.price}</td>
-                  <td>{product.category}</td>
-                  <td>{product.brand}</td>
-                  <td>
-                    <LinkContainer to={`/admin/product/${product._id}/edit`}>
-                      <Button className="btn-sm" variant="light">
+        <>
+          <Table striped bordered hover responsive className="table-sm">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>NAME</th>
+                <th>PRICE</th>
+                <th>CATEGORY</th>
+                <th>BRAND</th>
+                <th> </th>
+              </tr>
+            </thead>
+            <tbody>
+              {products.map((product) => {
+                return (
+                  <tr key={product._id}>
+                    <td>{product._id}</td>
+                    <td>{product.name}</td>
+                    <td>${product.price}</td>
+                    <td>{product.category}</td>
+                    <td>{product.brand}</td>
+                    <td>
+                      <LinkContainer to={`/admin/product/${product._id}/edit`}>
+                        <Button className="btn-sm" variant="light">
+                          <IconContext.Provider
+                            value={{
+                              size: '1.2em',
+                              color: 'black',
+                            }}
+                          >
+                            <FaUserEdit />
+                          </IconContext.Provider>
+                        </Button>
+                      </LinkContainer>
+                      <Button
+                        className="btn-sm"
+                        variant="danger"
+                        onClick={() => {
+                          return deleteHandler(product._id);
+                        }}
+                      >
                         <IconContext.Provider
                           value={{
                             size: '1.2em',
-                            color: 'black',
+                            color: 'white',
                           }}
                         >
-                          <FaUserEdit />
+                          <AiFillDelete />
                         </IconContext.Provider>
                       </Button>
-                    </LinkContainer>
-                    <Button
-                      className="btn-sm"
-                      variant="danger"
-                      onClick={() => {
-                        return deleteHandler(product._id);
-                      }}
-                    >
-                      <IconContext.Provider
-                        value={{
-                          size: '1.2em',
-                          color: 'white',
-                        }}
-                      >
-                        <AiFillDelete />
-                      </IconContext.Provider>
-                    </Button>
-                  </td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </Table>
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </Table>
+          <Paginate pages={pages} page={page} isAdmin />
+        </>
       )}
     </>
   );

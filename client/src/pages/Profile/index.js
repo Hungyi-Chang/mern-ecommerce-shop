@@ -152,7 +152,7 @@ const Profile = ({ history }) => {
                 }}
               />
             </Form.Group>
-            <Button type="submit" variant="primary">
+            <Button type="submit" variant="primary" className="mb-3">
               Update
             </Button>
           </Form>

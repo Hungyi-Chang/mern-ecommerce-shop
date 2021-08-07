@@ -13,7 +13,10 @@ import {
   listProductDetails,
   updateProduct,
 } from '../../actions/productActions';
-import { PRODUCT_UPDATE_RESET } from '../../constants/productConstants';
+import {
+  PRODUCT_DETAILS_RESET,
+  PRODUCT_UPDATE_RESET,
+} from '../../constants/productConstants';
 
 const ProductEdit = ({ match, history }) => {
   const [name, setName] = useState('');
@@ -89,6 +92,12 @@ const ProductEdit = ({ match, history }) => {
       setDescription(product.description);
     }
   }, [productId, product, dispatch, history, successUpdate]);
+
+  useEffect(() => {
+    return () => {
+      dispatch({ type: PRODUCT_DETAILS_RESET });
+    };
+  }, [dispatch]);
 
   const uploadFileHandler = async (e) => {
     if (e.target.files[0]) {

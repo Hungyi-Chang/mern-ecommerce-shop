@@ -90,11 +90,13 @@ color: #D6F7F8 !important;
 
 
 .menuItem {
-   color:  #3E4B59 !important;
   text-align: center !important;
   padding: 5px !important;
 }
 
+.menuItem  :active {
+   color: #ffff !important;
+}
 .link {
 text-decoration: none !important;
 }
@@ -110,3 +112,17 @@ text-decoration: none !important;
 color: #FD9096;
 
 }
+
+/* Carousel */
+
+.carousel-caption {
+   display: absolute;
+   top: 0;
+
+}
+
+.carousel-caption h2 {
+   color: #ffff !important;
+
+}
+

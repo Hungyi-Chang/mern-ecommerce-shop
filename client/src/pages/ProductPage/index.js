@@ -14,6 +14,7 @@ import {
   Button,
   Form,
 } from 'react-bootstrap';
+import Meta from '../../components/Meta';
 import Rating from '../../components/Rating';
 import Loader from '../../components/Loader';
 import Message from '../../components/Message';
@@ -23,7 +24,7 @@ import {
 } from '../../actions/productActions';
 import {
 
-  PRODUCT_CREATE_REVIEW_RESET,
+  PRODUCT_CREATE_REVIEW_RESET, PRODUCT_DETAILS_RESET,
 } from '../../constants/productConstants';
 
 // eslint-disable-next-line react/prop-types
@@ -54,21 +55,29 @@ const ProductPage = ({ match, history }) => {
     productReviewCreate;
 
   useEffect(() => {
+    if (product._id !== match.params.id || successProductReview) {
+      dispatch(listProductDetails(match.params.id));
+    }
+    
     if (successProductReview) {
       alert('Review Submitted!');
       setRating(0);
       setComment('');
       dispatch({ type: PRODUCT_CREATE_REVIEW_RESET });
     }
-    dispatch(listProductDetails(match.params.id));
-
-
-
+    
+   
     return () => {
       // dispatch({ type: PRODUCT_DETAILS_RESET });
       dispatch({ type: PRODUCT_CREATE_REVIEW_RESET });
     };
-  }, [dispatch, match, successProductReview]);
+  }, [dispatch, match, successProductReview, product]);
+
+  useEffect(() => {
+    return () => {
+      dispatch({ type: PRODUCT_DETAILS_RESET });
+    };
+  },[dispatch])
 
   
 
@@ -89,6 +98,7 @@ const ProductPage = ({ match, history }) => {
 
   return (
     <>
+      
       <Link className="btn btn-light my-3" to="/">
         Go Back
       </Link>
@@ -98,15 +108,16 @@ const ProductPage = ({ match, history }) => {
         <Message variant="danger">{error}</Message>
       ) : (
         <>
+              <Meta title={product.name} />
           <Row>
             <Col md={5}>
               <Image
                 src={
                   product.image
-                    ? product.image.split('.')[1]
-                      ? product.image
-                      : `/api/photoupload/${product._id}`
-                    : null
+                    // ? product.image.split('.')[1]
+                    //   ? product.image
+                    //   : `/api/photoupload/${product._id}`
+                    // : null
                 }
                 fluid
               />

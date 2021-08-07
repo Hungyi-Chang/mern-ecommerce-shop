@@ -14,33 +14,34 @@ const Product = ({ product }) => {
     <>
       <Card className="my-3 p-3 rounded">
         <Link to={`/product/${product._id}`}>
-          <LazyLoad height={100} offset={[1000, 0]}>
-            <LoadedState>
-              {({ state: loaded, setState: setLoaded }) => {
-                return (
-                  <>
-                    {!loaded ? (
-                      <Card.Img src="/images/loadingPlaceholder.png" />
-                    ) : null}
+          <LoadedState>
+            {({ state: loaded, setState: setLoaded }) => {
+              return (
+                <>
+                  {!loaded ? (
                     <Card.Img
                       variant="top"
-                      src={
-                        product.image
-                          ? product.image.split('.')[1]
-                            ? product.image
-                            : `/api/photoupload/${product._id}`
-                          : null
-                      }
-                      style={!loaded ? { visibility: 'hidden' } : {}}
-                      onLoad={() => {
-                        return setLoaded(true);
-                      }}
+                      src="/images/loadingPlaceholder.png"
                     />
-                  </>
-                );
-              }}
-            </LoadedState>
-          </LazyLoad>
+                  ) : null}
+                  <Card.Img
+                    variant="top"
+                    src={
+                      product.image
+                      // ? product.image.split('.')[1]
+                      //   ? product.image
+                      //   : `/api/photoupload/${product._id}`
+                      // : null
+                    }
+                    style={!loaded ? { display: 'none' } : {}}
+                    onLoad={() => {
+                      return setLoaded(true);
+                    }}
+                  />
+                </>
+              );
+            }}
+          </LoadedState>
         </Link>
         <Card.Body>
           <Link to={`/product/${product._id}`}>

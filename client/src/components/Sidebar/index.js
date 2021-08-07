@@ -31,7 +31,8 @@ const Sidebar = ({ isOpen, toggle }) => {
       </Icon>
       <SidebarWrapper>
         {userInfo ? (
-          <SidebarMenu rows={userInfo.isAdmin ? 6 : 3}>
+          <SidebarMenu rows={userInfo.isAdmin ? 7 : 4}>
+            <SidebarLink to="/">HOME</SidebarLink>
             <SidebarLink to="/cart">CART</SidebarLink>
             <SidebarLink to="/profile">PROFILE</SidebarLink>
             {userInfo.isAdmin ? (
@@ -46,7 +47,8 @@ const Sidebar = ({ isOpen, toggle }) => {
             </SidebarLink>
           </SidebarMenu>
         ) : (
-          <SidebarMenu rows={2}>
+          <SidebarMenu rows={3}>
+            <SidebarLink to="/">HOME</SidebarLink>
             <SidebarLink to="/cart">CART</SidebarLink>
             <SidebarLink to="/login">SIGN IN</SidebarLink>
           </SidebarMenu>
