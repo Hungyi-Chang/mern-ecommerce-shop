@@ -64,7 +64,7 @@ const Cart = ({ match, location, history }) => {
                       <Link to={`/product/${item.product}`}>{item.name}</Link>
                     </Col>
                     <Col md={2}>${item.price}</Col>
-                    <Col md={2}>
+                    <Col md={2} className="my-1">
                       <Form.Control
                         as="select"
                         value={item.qty}
