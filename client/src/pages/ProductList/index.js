@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-globals */
 /* eslint-disable no-nested-ternary */
 /* eslint-disable react/prop-types */
 import React, { useEffect } from 'react';
@@ -76,7 +77,7 @@ const ProductList = ({ history, match }) => {
   ]);
 
   const deleteHandler = (id) => {
-    if (window.confirm('Are you sure you want to delete this product?')) {
+    if (confirm('Are you sure you want to delete this product?')) {
       dispatch(deleteProduct(id));
     }
   };
