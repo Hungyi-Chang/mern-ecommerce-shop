@@ -16,6 +16,20 @@ A brief description of how to setup and run this project
 
 https://eccomercedreamshop.herokuapp.com/
 
+Admin Login Account
+```
+Username: admin123@example.com
+
+password: 12345
+```
+Normal User Lofin Account
+```
+Username: mila@gmail
+
+password: mila123
+```
+  
+
   
 ## Environment Variables
 
