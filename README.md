@@ -4,7 +4,7 @@
 A brief description of how to setup and run this project 
 
 
-![Logo](https://mern-dream-shop.s3.ap-southeast-2.amazonaws.com/favicon-32x32.png)
+![Logo](https://mern-dream-shop.s3.ap-southeast-2.amazonaws.com/apple-touch-icon.png)
 
     
 ## Screenshots
