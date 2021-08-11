@@ -53,7 +53,7 @@ const UserEdit = ({ match, history }) => {
     e.preventDefault();
     console.log({ _id: userId, name, email, isAdmin });
 
-    dispatch(updateUser({ _id: 123, name, email, isAdmin }));
+    dispatch(updateUser({ _id: userId, name, email, isAdmin }));
   };
   return (
     <>
