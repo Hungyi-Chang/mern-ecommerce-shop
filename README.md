@@ -22,7 +22,7 @@ Username: admin123@example.com
 
 password: 12345
 ```
-Normal User Lofin Account
+Normal User Login Account
 ```
 Username: mila@gmail
 
